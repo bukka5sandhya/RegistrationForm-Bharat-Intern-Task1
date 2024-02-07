@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        
+        <meta charset="utf-8">
+        <meta name="viewport" content="wisth=device-width,initial-scale=1,shrink-to-fit=no">
+        <link rel="stylesheet" href="index.css">
+        <title>Registration Form</title>
+    </head>
+    <body>
+        <div class="bg-container">
+            <h1 class="sign-up-heading">Sign Up</h1>
+            <form action="/register" method="post">
+                <label for="username"class="list-items">Username:</label>
+                <input type="text" id="username" name="username"  class="input-user"required>
+          
+                <label for="email" class="list-items">Email:</label>
+                <input type="email" id="email" name="email" class="input-user"required>
+          
+                <label for="password" class="list-items">Password:</label>
+                <input type="password" id="password" name="password" class="input-user"required>
+                <div class="button-position">
+                <a href="welcome.html"><button type="submit" class="register-button">Register</button></a>
+                </div>
+            </form>
+        </div>
+
+        <!--javascript code-->
+        <script>
+            const express = require('express');
+const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
+
+const app = express();
+const PORT = 3000; // You can choose any available port
+
+// Connect to MongoDB
+mongoose.connect('mongodb://localhost:27017/your-database-name', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
+
+// Create a User schema
+const userSchema = new mongoose.Schema({
+  username: String,
+  email: String,
+  password: String,
+});
+
+// Create a User model
+const User = mongoose.model('User', userSchema);
+
+// Middleware
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.static('public')); // Serve static files from 'public' directory
+
+// Route to handle user registration form
+app.post('/register', async (req, res) => {
+  const { username, email, password } = req.body;
+
+  // Create a new user
+  const newUser = new User({
+    username,
+    email,
+    password,
+  });
+
+  try {
+    // Save the user to the database
+    await newUser.save();
+    res.send('Registration successful!');
+  } catch (error) {
+    res.status(500).send('Error registering user.');
+  }
+});
+
+// Start the server
+app.listen(PORT, () => {
+  console.log(`Server is running on http://localhost:${PORT}`);
+});
+
+           
+        </script>
+    </body>
+</html>

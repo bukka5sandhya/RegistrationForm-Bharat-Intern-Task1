@@ -1,0 +1,50 @@
+*{
+    margin:0;
+    padding:0;
+}
+.bg-container{
+    background-image: url("https://img.freepik.com/free-photo/office-desk-workspace-bright-color-yellow-background_169016-38713.jpg?w=900&t=st=1707285008~exp=1707285608~hmac=99c3b46a8c2927232f7914a22542ff46298e6ea545c0c5cdd7e3a9c78e48fde2");
+    background-size:cover;
+    height:100vh;
+    text-align:center;
+}
+.sign-up-heading{
+    font-family:'Roboto';
+    font-size:50px;
+    padding:10px;
+    font-weight: bold;
+    color:#323f4b;
+
+}
+form {
+    display: flex;
+    flex-direction: column;
+}
+  
+label {
+    margin-bottom: 8px;
+}
+  
+input {
+    padding: 8px;
+    margin-bottom: 16px;
+}
+  
+.register-button {
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    
+}
+.input-user{
+    width:90%;
+    margin:20px;
+}
+.button-position{
+    text-align: center;
+}
+.list-items{
+    font-size:20px;
+    font-family:"Roboto";
+}
